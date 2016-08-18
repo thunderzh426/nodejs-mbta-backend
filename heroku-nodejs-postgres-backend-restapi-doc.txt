@@ -1,0 +1,151 @@
+OSC Hybrid Mobile Project demo backend Rest API document
+==========================================
+Server Information:
+
+Cloud based server hosted by Heroku. 
+Host: https://puppies-nodejs-postgres.herokuapp.com/
+
+Database URL: postgres://sffdrbcobskkxg:B4zpLZlJgJP6k_krTIqB0E3X4p@ec2-54-243-204-221.compute-1.amazonaws.com:5432/d853ob7t4gjnkn
+==========================================
+
+==========================================
+1. Get all puppies
+==========================================
+URI: /api/puppies
+
+Method: GET
+
+Description: Get all puppies in database.
+
+Parameters: N/A
+
+Sample response: 
+{
+  "status": "success",
+  "data": [
+    {
+      "id": 1,
+      "name": "Le Deng",
+      "breed": "annoying",
+      "age": 33,
+      "sex": "M"
+    },
+    {
+      "id": 3,
+      "name": "Le2 Deng",
+      "breed": "annoying",
+      "age": 33,
+      "sex": "F"
+    }
+  ],
+  "message": "Retrieved ALL puppies"
+}
+
+==========================================
+2. Get single puppy
+==========================================
+URI: /api/puppies/{id}
+
+Method: GET
+
+Description: Get a single puppy by id in database. 
+
+Parameters: 
+	Path Variable: 
+		id: int, REQUIRED
+
+Sample response:
+{
+  "status": "success",
+  "data": {
+    "id": 1,
+    "name": "Le Deng",
+    "breed": "annoying",
+    "age": 33,
+    "sex": "M"
+  },
+  "message": "Retrieved ONE puppy"
+}
+
+==========================================
+3. Create puppy
+==========================================
+URI: /api/puppies
+
+Method: POST
+
+Description: Create a new puppy.
+
+Content-Type: application/json
+
+Parameters:
+	Request body parameters (application/json):
+		age: int, REQUIRED
+		name: string, OPTIONAL
+		sex: string, OPTIONAL, "M" or "F"
+		breed: string, OPTIONAL
+
+Sample request: 
+{
+	"age": 33,
+	"name": "Le Deng",
+	"sex": "M",
+	"breed": "annoying"
+}
+
+Sample success response: 
+{
+  "status": "success",
+  "message": "Inserted one puppy"
+}
+
+==========================================
+4. Update puppy information
+==========================================
+URI: /api/puppies/{id}
+
+Method: PUT
+
+Description: Update the information of a puppy by id.
+
+Content-Type: application/json
+
+Parameters:
+	Request body parameters (application/json):
+		age: int, REQUIRED
+		name: string, OPTIONAL
+		sex: string, OPTIONAL, "M" or "F"
+		breed: string, OPTIONAL
+
+Sample request: 
+{
+	"age": 33,
+	"name": "Le Deng (updated)",
+	"sex": "F",
+	"breed": "annoying"
+}
+
+Sample success response: 
+{
+  "status": "success",
+  "message": "Updated puppy"
+}
+
+==========================================
+5. Delete a puppy
+==========================================
+URI: /api/puppies/{id}
+
+Method: DELETE
+
+Description: Delete a single puppy by id in database. 
+
+Parameters: 
+	Path Variable: 
+		id: int, REQUIRED
+
+Sample success response: 	
+{
+  "status": "success",
+  "message": "Removed 1 puppy"
+}
