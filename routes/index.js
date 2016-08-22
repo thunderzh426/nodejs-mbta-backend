@@ -3,6 +3,7 @@ var router = express.Router();
 
 var db = require('../queries');
 var mbta = require('../mbta');
+var ts = require('../backend/userQueries');
 
 router.get('/api/puppies', db.getAllPuppies);
 router.get('/api/puppies/:id', db.getSinglePuppy);
@@ -33,5 +34,9 @@ router.get('/api/mbta/alertsbystop', mbta.getAlertsByStop);                     
 router.get('/api/mbta/alertsbyid', mbta.getAlertById);                          //http://localhost:3000/api/mbta/alertsbyid?id=116064
 router.get('/api/mbta/servertime', mbta.getServerTime);                         //http://localhost:3000/api/mbta/servertime
 
+//TimeSheet APIs
+router.post('/api/timesheet/users', ts.saveUser);
+router.get('/api/timesheet/users', ts.getUsers);
+router.get('/api/timesheet/user', ts.getUser);
 
 module.exports = router;
